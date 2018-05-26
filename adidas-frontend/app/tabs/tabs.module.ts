@@ -6,7 +6,6 @@ import { HomeComponent } from "./home/home.component";
 import { SearchComponent } from "./search/search.component";
 import { TabsRoutingModule } from "./tabs-routing.module";
 import { TabsComponent } from "./tabs.component";
-import { LoginComponent } from "~/tabs/login/login.component";
 
 @NgModule({
     imports: [
@@ -18,7 +17,6 @@ import { LoginComponent } from "~/tabs/login/login.component";
         HomeComponent,
         BrowseComponent,
         SearchComponent,
-        LoginComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA
