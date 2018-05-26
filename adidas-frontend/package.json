@@ -4,7 +4,10 @@
   "readme": "NativeScript Application",
   "repository": "<fill-your-repository-here>",
   "nativescript": {
-    "id": "org.nativescript.default"
+    "id": "org.nativescript.prueba",
+    "tns-android": {
+      "version": "4.0.1"
+    }
   },
   "scripts": {
     "lint": "tslint \"app/**/*.ts\""
@@ -20,6 +23,7 @@
     "@angular/platform-browser-dynamic": "~5.2.0",
     "@angular/router": "~5.2.0",
     "nativescript-angular": "~5.3.0",
+    "nativescript-pro-ui": "^3.4.1",
     "nativescript-theme-core": "~1.0.4",
     "reflect-metadata": "~0.1.10",
     "rxjs": "~5.5.5",
@@ -27,25 +31,30 @@
     "zone.js": "~0.8.18"
   },
   "devDependencies": {
+    "@angular/compiler-cli": "~5.2.0",
+    "@ngtools/webpack": "~1.9.4",
+    "babel-traverse": "6.4.5",
+    "babel-types": "6.4.5",
+    "babylon": "6.4.5",
+    "clean-webpack-plugin": "~0.1.19",
     "codelyzer": "~4.0.2",
+    "copy-webpack-plugin": "~4.3.0",
+    "css-loader": "~0.28.7",
+    "extract-text-webpack-plugin": "~3.0.2",
+    "lazy": "1.0.11",
     "nativescript-dev-sass": "~1.5.0",
     "nativescript-dev-typescript": "~0.7.0",
     "nativescript-dev-webpack": "~0.10.0",
+    "nativescript-worker-loader": "~0.8.1",
+    "nativescript-pro-ui": "^3.4.1",
+    "raw-loader": "~0.5.1",
+    "resolve-url-loader": "~2.2.1",
+    "sass-loader": "~6.0.6",
     "tslint": "~5.8.0",
     "typescript": "~2.7.2",
+    "uglifyjs-webpack-plugin": "~1.1.6",
     "webpack": "~3.10.0",
     "webpack-bundle-analyzer": "^2.9.1",
-    "webpack-sources": "~1.1.0",
-    "clean-webpack-plugin": "~0.1.19",
-    "copy-webpack-plugin": "~4.3.0",
-    "raw-loader": "~0.5.1",
-    "css-loader": "~0.28.7",
-    "nativescript-worker-loader": "~0.8.1",
-    "resolve-url-loader": "~2.2.1",
-    "extract-text-webpack-plugin": "~3.0.2",
-    "uglifyjs-webpack-plugin": "~1.1.6",
-    "@angular/compiler-cli": "~5.2.0",
-    "@ngtools/webpack": "~1.9.4",
-    "sass-loader": "~6.0.6"
+    "webpack-sources": "~1.1.0"
   }
 }
