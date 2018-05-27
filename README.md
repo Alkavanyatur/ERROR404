@@ -11,7 +11,20 @@ Proponemos crear un tipo de sensor que pueda existir en la zapatilla, que sea in
 Se utiliza la parte de Machine Learning como forma de identificar la actividad que el usuario realiza para evitar la interaccion del usuario con el sensor a la hora de empezar una actividad.
 
 
-Consta de las siguientes partes:
+## Integrantes
+
+Mariano  Moreno - FrontEnd
+
+Jorge  Rivero - Data Scientist
+
+Adriano  Elorza - BackEnd Developer
+
+Fernando  Ortega - BackEnd Developer
+
+Rolando  González - Communication GUI
+
+
+## Consta de las siguientes partes:
 
 ### BackEnd
 
@@ -42,17 +55,6 @@ Base de datos en SQL
 Presentación del proyecto.
 
 
-## Integrantes
-
-Mariano  Moreno - FrontEnd
-
-Jorge  Rivero - Data Scientist
-
-Adriano  Elorza - BackEnd Developer
-
-Fernando  Ortega - BackEnd Developer
-
-Rolando  González - Communication GUI
 
 
 
