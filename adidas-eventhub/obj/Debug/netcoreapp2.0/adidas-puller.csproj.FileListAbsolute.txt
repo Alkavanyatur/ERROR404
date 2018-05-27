@@ -1,0 +1,11 @@
+C:\Users\Tomi\adidas-puller\bin\Debug\netcoreapp2.0\adidas-puller.deps.json
+C:\Users\Tomi\adidas-puller\bin\Debug\netcoreapp2.0\adidas-puller.runtimeconfig.json
+C:\Users\Tomi\adidas-puller\bin\Debug\netcoreapp2.0\adidas-puller.runtimeconfig.dev.json
+C:\Users\Tomi\adidas-puller\bin\Debug\netcoreapp2.0\adidas-puller.dll
+C:\Users\Tomi\adidas-puller\bin\Debug\netcoreapp2.0\adidas-puller.pdb
+C:\Users\Tomi\adidas-puller\obj\Debug\netcoreapp2.0\adidas-puller.csprojAssemblyReference.cache
+C:\Users\Tomi\adidas-puller\obj\Debug\netcoreapp2.0\adidas-puller.csproj.CoreCompileInputs.cache
+C:\Users\Tomi\adidas-puller\obj\Debug\netcoreapp2.0\adidas-puller.AssemblyInfoInputs.cache
+C:\Users\Tomi\adidas-puller\obj\Debug\netcoreapp2.0\adidas-puller.AssemblyInfo.cs
+C:\Users\Tomi\adidas-puller\obj\Debug\netcoreapp2.0\adidas-puller.dll
+C:\Users\Tomi\adidas-puller\obj\Debug\netcoreapp2.0\adidas-puller.pdb
