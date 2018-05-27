@@ -25,6 +25,11 @@ Fernando  Ortega - BackEnd Developer
 Rolando  González - Communication GUI
 
 
+## Tecnologías utilizadas.
+
+UI/UX, Android, J2EE, Spring Boot, Swagger, Python, TensorFlow, MySQL, MyBatis, Angular5, NativeScript, Lombok, C#, Kotlin, ZeroMQ
+
+
 ## Consta de las siguientes partes:
 
 ### BackEnd
@@ -54,12 +59,6 @@ Base de datos en SQL
 ### Presentación
 
 Presentación del proyecto.
-
-
-
-## Tecnologías utilizadas.
-
-UI/UX, Android, J2EE, Spring Boot, Swagger, Python, TensorFlow, MySQL, MyBatis, Angular5, NativeScript, Lombok, C#, Kotlin, ZeroMQ
 
 
 
