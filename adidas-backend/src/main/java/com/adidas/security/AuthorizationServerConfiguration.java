@@ -38,7 +38,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 .withClient("client")
                     .authorizedGrantTypes("password", "refresh_token")
                     .scopes("read", "write")
-                    .secret("fucksecurity");
+                    .secret("Error404");
     }
 
     @Override

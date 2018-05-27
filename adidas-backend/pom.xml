@@ -109,8 +109,9 @@
 		</dependency>
 
     </dependencies>
-
+<packaging>jar</packaging>
     <build>
+    
         <plugins>
             <!-- Package the project as an executable jar -->
             <plugin>
