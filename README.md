@@ -6,9 +6,10 @@ Este es el repositorio de el equipo ERROR404 para el adidas-hack de Madrid de ma
 
 ## Caso de uso
 
-Proponemos crear un tipo de sensor que pueda existir en la zapatilla, que sea inteligente y conectado, sensorizado y permita pasar datos a una API, para obtener métricas y ofrecer distintos servicios como un recomendador, etc.
+Proponemos crear un tipo de zapatilla, que sea inteligente y conectada, sensorizada y permita pasar datos a una API, para obtener métricas y ofrecer distintos servicios como un recomendador, etc.
 
-Se utiliza la parte de Machine Learning como forma de identificar la actividad que el usuario realiza para evitar la interaccion del usuario con el sensor a la hora de empezar una actividad.
+Se utiliza la parte de Machine Learning como forma de identificar la actividad que el usuario realiza para evitar la interaccion del usuario con el sensor a la hora de empezar una actividad. Creando un modelo y entrenandolo para luego realizar test.
+
 
 
 ## Integrantes
