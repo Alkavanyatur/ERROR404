@@ -16,8 +16,6 @@ namespace adidas_puller
     public struct TrainingData {
         public int idActivity {get; set;}
         public SensorData[] sensorDatas {get; set;}
-
-        
     }
 
     public struct SensorData {
@@ -25,7 +23,6 @@ namespace adidas_puller
         public Single axisy {get; set;}
         public Single axisz {get; set;}
         public int idSensorType {get; set;}
-        public int idActivity {get; set;}
         public string updateTime {get; set;}
     }
 
@@ -37,12 +34,12 @@ namespace adidas_puller
             settings.EmitTypeInformation = System.Runtime.Serialization.EmitTypeInformation.Never;
 
             var http = new HttpClient();
-            var puller = new NetMQ.Sockets.PullSocket();
+            var sensorDataPullSocket = new NetMQ.Sockets.PullSocket();
+            var predictionDataPullSocket = new NetMQ.Sockets.PullSocket();
 
             //I DONT EVEN USE THIS PUSHER SOCKET BUT WHO CARES IT'S HACKATON MY FRENDS!
-            var pusher = new NetMQ.Sockets.PushSocket();
+            var trainingDataPushSocket = new NetMQ.Sockets.PushSocket();
 
-            var requester = new NetMQ.Sockets.RequestSocket();
             var historical = new List<SensorData>();
             var partyHard = false;
             
@@ -54,19 +51,20 @@ namespace adidas_puller
 
             var tempSensor = new List<SensorData>();
             
-            puller.Bind("tcp://*:58588");
-            pusher.Connect("tcp://172.16.30.142:5557");
-            requester.Connect("tcp://172.16.30.142");
+            sensorDataPullSocket.Bind("tcp://*:58588");
+            predictionDataPullSocket.Bind("tcp://*:5558");
+            
+            trainingDataPushSocket.Connect("tcp://172.16.30.142:5557");
 
             Task.Run(()=>{
                 while (true){
-                    var message = puller.ReceiveFrameString().Split('|');
+                    var message = sensorDataPullSocket.ReceiveFrameString().Split('|');
                     var sensorDatas = new SensorData(){
                         idSensorType = Convert.ToInt16(message[0]),
                         axisx = Convert.ToSingle(message[1]),
                         axisy = Convert.ToSingle(message[2]),
                         axisz = Convert.ToSingle(message[3]),
-                        updateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ")
+                        updateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ")
                     };
                     tempSensor.Add(sensorDatas);
 
@@ -77,18 +75,44 @@ namespace adidas_puller
 
             // EXCUSE MY SPAGHETTI
             Task.Run(()=> {
+                
                 while (true) {
-                    if (tempSensor.Count > 50){
+                    var samples = 20;
+                    if (tempSensor.Count > samples){
                         using (var stream = new MemoryStream()) {
-                            sensorDataSerializer.WriteObject(stream, tempSensor.ToArray());
+                            var tempSensorLast = tempSensor.Skip(Math.Max(0, tempSensor.Count - samples)).ToArray();
+                            sensorDataSerializer.WriteObject(stream, tempSensorLast);
                             stream.Position = 0;
                             StreamReader sr = new StreamReader(stream);  
-                            var finalString = sr.ReadToEnd();
-                            requester.SendFrame(finalString);
-                            Console.WriteLine("Ladiess and Gentleman we proudly have! A probably wrong prediction! APPLAUSSE");
-                            Console.WriteLine(requester.ReceiveFrameString());
+                            trainingDataPushSocket.SendFrame(sr.ReadToEnd());
+                            Thread.Sleep(10000);
                         } 
                     }
+                }
+            });
+
+            Task.Run(()=>{
+                while(true){
+                    var prediction = predictionDataPullSocket.ReceiveFrameString();
+                    Console.WriteLine("Ladiess and Gentleman we proudly have! A probably wrong prediction! APPLAUSSE");
+                    switch(prediction){
+                        case "1":
+                            prediction = "Tennis";
+                            break;
+                        case "2":
+                            prediction = "Running";
+                            break;
+                        case "3":
+                            prediction = "Football";
+                            break;
+                        case "4":
+                            prediction = "Cycling";
+                            break;
+                        case "5":
+                            prediction = "Basket";
+                            break;
+                    }
+                    Console.WriteLine($"Are you playing {prediction}?");
                 }
             });
             
@@ -104,7 +128,7 @@ namespace adidas_puller
                 Console.WriteLine("Press 5 for save Basket");
                 Console.WriteLine("=========================");
                 Console.WriteLine("Press c for clean data");
-                Console.WriteLine("Press p for party hard");
+                Console.WriteLine("Press h for party hard");
                 Console.WriteLine("=========================");
                 Console.WriteLine("AND DONT FORGET PUSH ENTER AFTER!");
 
@@ -115,7 +139,7 @@ namespace adidas_puller
                     continue;
                 }
 
-                if (command.ToString() == "p"){
+                if (command.ToString() == "h"){
                     if (!partyHard)
                         partyHard = true;
                     else
@@ -149,7 +173,7 @@ namespace adidas_puller
                     var finalString = sr.ReadToEnd();
 
 
-                    pusher.SendFrame(finalString);
+                    trainingDataPushSocket.SendFrame(finalString);
 
                     var content = new StringContent(finalString.ToString(), Encoding.UTF8, "application/json");
 
