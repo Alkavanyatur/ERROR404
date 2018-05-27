@@ -1,6 +1,5 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptCommonModule } from "nativescript-angular/common";
-
 import { BrowseComponent } from "./browse/browse.component";
 import { HomeComponent } from "./home/home.component";
 import { SearchComponent } from "./search/search.component";
