@@ -57,7 +57,9 @@ Presentación del proyecto.
 
 
 
+## Tecnologías utilizadas.
 
+UI/UX, Android, J2EE, Spring Boot, Swagger, Python, TensorFlow, MySQL, MyBatis, Angular5, NativeScript, Lombok, C#, Kotlin, ZeroMQ
 
 
 
