@@ -11,8 +11,10 @@ using System.Runtime.Serialization.Json;
 using System.IO;
 using System.Text;
 
+
 namespace adidas_puller
 {
+    //No time to separate structs in files! Run run run, time is gold.
     public struct TrainingData {
         public int idActivity {get; set;}
         public SensorData[] sensorDatas {get; set;}
@@ -33,29 +35,35 @@ namespace adidas_puller
             DataContractJsonSerializerSettings settings = new DataContractJsonSerializerSettings();
             settings.EmitTypeInformation = System.Runtime.Serialization.EmitTypeInformation.Never;
 
+            //Lets go with the party. We gonna use http to post training data through a Spring Boot service.
             var http = new HttpClient();
+
+            //We pull data from sensor and pull data from the predictor model
             var sensorDataPullSocket = new NetMQ.Sockets.PullSocket();
             var predictionDataPullSocket = new NetMQ.Sockets.PullSocket();
+            
 
             //I DONT EVEN USE THIS PUSHER SOCKET BUT WHO CARES IT'S HACKATON MY FRENDS!
             var trainingDataPushSocket = new NetMQ.Sockets.PushSocket();
 
-            var historical = new List<SensorData>();
+            //Bind bind connect! Do stuff!
+            sensorDataPullSocket.Bind("tcp://*:58588");
+            predictionDataPullSocket.Bind("tcp://*:5558");
+            
+            //Python can get the training data through spring boot also, but.. I love sockets and I use it everywhere
+            trainingDataPushSocket.Connect("tcp://172.16.30.142:5557");
+
+            //Some funny variables
             var partyHard = false;
             
+            //lets go create a bunch of serializers, ok only 2.
             var trainingDataSerializer = new DataContractJsonSerializer(typeof(List<TrainingData>));
             trainingDataSerializer.KnownTypes.Append(typeof(SensorData));
 
             var sensorDataSerializer = new DataContractJsonSerializer(typeof(SensorData[]));
-
-
             var tempSensor = new List<SensorData>();
             
-            sensorDataPullSocket.Bind("tcp://*:58588");
-            predictionDataPullSocket.Bind("tcp://*:5558");
-            
-            trainingDataPushSocket.Connect("tcp://172.16.30.142:5557");
-
+            //The multithread hell starts here. Ok no only 2 threads for some async stuff.
             Task.Run(()=>{
                 while (true){
                     var message = sensorDataPullSocket.ReceiveFrameString().Split('|');
@@ -68,6 +76,7 @@ namespace adidas_puller
                     };
                     tempSensor.Add(sensorDatas);
 
+                    //this shows sensor data from devices
                     if (partyHard)
                         Console.WriteLine($"foot {sensorDatas.idSensorType} x:{sensorDatas.axisx} y:{sensorDatas.axisy} z:{sensorDatas.axisz}");
                 }
@@ -75,7 +84,8 @@ namespace adidas_puller
 
             // EXCUSE MY SPAGHETTI
             Task.Run(()=> {
-                
+                //This thread send background data to the prediction stream. Maybe a request/response could be more
+                //appropiated but.. so tired.
                 while (true) {
                     var samples = 20;
                     if (tempSensor.Count > samples){
@@ -85,6 +95,7 @@ namespace adidas_puller
                             stream.Position = 0;
                             StreamReader sr = new StreamReader(stream);  
                             trainingDataPushSocket.SendFrame(sr.ReadToEnd());
+                            //Should I flood the python service... Be good, be good..
                             Thread.Sleep(10000);
                         } 
                     }
@@ -96,19 +107,19 @@ namespace adidas_puller
                     var prediction = predictionDataPullSocket.ReceiveFrameString();
                     Console.WriteLine("Ladiess and Gentleman we proudly have! A probably wrong prediction! APPLAUSSE");
                     switch(prediction){
-                        case "1":
+                        case "0":
                             prediction = "Tennis";
                             break;
-                        case "2":
+                        case "1":
                             prediction = "Running";
                             break;
-                        case "3":
+                        case "2":
                             prediction = "Football";
                             break;
-                        case "4":
+                        case "3":
                             prediction = "Cycling";
                             break;
-                        case "5":
+                        case "4":
                             prediction = "Basket";
                             break;
                     }
