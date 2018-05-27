@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.adidas.repository.mybatis.ProductMapper">
+
+    <resultMap id="product" type="Product">
+        <id property="idProduct" column="ID_PRODUCT"/>
+        <result property="product" column="PRODUCT"/>
+        <result property="weburl" column="WEBURL"/>
+        <result property="imgurl" column="IMGURL"/>
+        <result property="prize" column="PRIZE"/>
+        <result property="idActivity" column="ID_ACTIVITY"/>
+        
+        
+    </resultMap>
+
+    
+	<select id="selectByIdActivity" resultMap="product">
+        SELECT
+          ID_PRODUCT, PRODUCT, WEBURL, IMGURL, PRIZE, ID_ACTIVITY 
+        FROM
+          PRODUCT
+        WHERE
+          ID_ACTIVITY = #{idActivity}
+    </select>
+    
+
+</mapper>

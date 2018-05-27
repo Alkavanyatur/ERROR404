@@ -23,4 +23,18 @@ insert into sensor_type (ID_SENSOR_TYPE, SENSOR_TYPE) values (2, 'Right foot');
 
 insert into user (ID_USER, USER_NAME, PASSWORD) values (1, 'Error404', 'Error404');
 
+insert into product (id_product,product,weburl,imgurl,prize,id_activity) values (1,'ZAPATILLA CITY CUP','https://www.adidas.es/zapatilla-city-cup/CQ1081.html','
+https://www.adidas.es/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dwcc8a748e/zoom/CQ1081_01_standard.jpg', 89.95, 1);
+
+insert into product (id_product,product,weburl,imgurl,prize,id_activity) values (2,'ZAPATILLA BUSENITZ VULC RX','https://www.adidas.es/zapatilla-busenitz-vulc-rx/CQ1172.html','
+https://www.adidas.es/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dwaa3887aa/zoom/CQ1172_01_standard.jpg', 89.95, 2);
+
+insert into product (id_product,product,weburl,imgurl,prize,id_activity) values (3,'ZAPATILLA BUSENITZ PRO','https://www.adidas.es/zapatilla-busenitz-pro/G48060.html','
+https://www.adidas.es/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dw68c131fb/zoom/G48060_01_standard.jpg', 89.95, 3);
+
+insert into product (id_product,product,weburl,imgurl,prize,id_activity) values (4,'ZAPATILLA LUCAS PREMIERE','https://www.adidas.es/zapatilla-lucas-premiere/CQ1104.html','
+https://www.adidas.es/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dw547e8d42/zoom/CQ1104_01_standard.jpg', 99.95, 4);
+
+insert into product (id_product,product,weburl,imgurl,prize,id_activity) values (5,'ZAPATILLA POWER PERFECT 3','https://www.adidas.es/zapatilla-power-perfect-3/DA9882.html','
+https://www.adidas.es/dis/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dwe5e7617e/zoom/DA9882_01_standard.jpg', 119.95, 5);
 commit;

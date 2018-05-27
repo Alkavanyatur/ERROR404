@@ -1,5 +1,6 @@
 package com.adidas.service.impl;
 
+import org.apache.commons.httpclient.util.HttpURLConnection;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,9 +13,18 @@ import com.adidas.repository.UserActivityDataRepository;
 import com.adidas.service.UserActivityDataService;
 import com.adidas.util.PageUtil;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.SocketTimeoutException;
+import java.net.URL;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import javax.net.ssl.HttpsURLConnection;
 
 /**
  * @author Error404
@@ -64,7 +74,9 @@ public class UserActivityDataServiceImpl implements UserActivityDataService {
     
     @Override
     public List<UserActivityData> getUserActivityDataByUserActivity(Long idUser, Long idActivity) {
+    	
         return userActivityDataRepository.selectUserActivityDataByUserActivity(idUser, idActivity);
     }
+
     
 }

@@ -5,7 +5,7 @@ package com.adidas.constant;
  */
 public class ResourceNameConstant {
 
-    public static final String BOOK = "book";
+    public static final String PRODUCT = "product";
 
     /**
      * Prevent instantiation

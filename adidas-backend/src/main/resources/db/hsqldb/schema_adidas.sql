@@ -34,3 +34,12 @@ AXISX DECIMAL(10,2),
 AXISY DECIMAL(10,2),
 AXISZ DECIMAL(10,2)
 );
+
+CREATE TABLE product (
+id_product bigint,
+product varchar(100),
+weburl varchar(300),
+imgurl varchar(300),
+prize float,
+id_activity bigint
+);
