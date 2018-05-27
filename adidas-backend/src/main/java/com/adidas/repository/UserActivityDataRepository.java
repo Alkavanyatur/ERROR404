@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.adidas.model.entity.Book;
-import com.adidas.model.entity.BookWithBookStore;
 import com.adidas.model.entity.UserActivityData;
 
 /**

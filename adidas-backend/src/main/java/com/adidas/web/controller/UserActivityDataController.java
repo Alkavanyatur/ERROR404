@@ -1,19 +1,11 @@
 package com.adidas.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.adidas.constant.PageConstant;
-import com.adidas.constant.ResourceNameConstant;
-import com.adidas.model.dto.PaginatedResult;
-import com.adidas.model.entity.Book;
-import com.adidas.service.BookService;
 import com.adidas.service.UserActivityDataService;
-import com.adidas.util.PageUtil;
-import com.adidas.web.exception.ResourceNotFoundException;
 
 import java.net.URI;
 
