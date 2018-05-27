@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.adidas.repository.mybatis.SensorDataMapper">
+
+    <resultMap id="sensorData" type="SensorData">
+        <id property="idSensorData" column="ID_SENSOR_DATA"/>
+        <result property="idUserActivityData" column="ID_USER_ACTIVITY_DATA"/>
+        <result property="idSensorType" column="ID_SENSOR_TYPE"/>
+        <result property="updateTime" column="UPDATE_TIME"/>
+        <result property="sequence" column="SEQUENCE"/>
+        <result property="latitude" column="LATITUDE"/>
+        <result property="longitude" column="LONGITUDE"/>
+        <result property="axisx" column="AXISX"/>
+        <result property="axisy" column="AXISY"/>
+        <result property="axisz" column="AXISZ"/>             
+    </resultMap>
+
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="idSensorData">
+        INSERT INTO
+          SENSOR_DATA (ID_USER_ACTIVITY_DATA, ID_SENSOR_TYPE, UPDATE_TIME, SEQUENCE, LATITUDE, LONGITUDE, AXISX, AXISY, AXISZ)
+        VALUES
+          (#{idUserActivityData}, #{idSensorType}, #{updateTime}, #{sequence}, #{latitude}, #{longitude}, #{axisx}, #{axisy}, #{axisz})
+
+         
+    </insert>
+    
+	<insert id="insertSensorDataList" useGeneratedKeys="true" keyProperty="idSensorData" parameterType="list">
+        INSERT INTO
+          SENSOR_DATA (ID_USER_ACTIVITY_DATA, ID_SENSOR_TYPE, UPDATE_TIME, SEQUENCE, LATITUDE, LONGITUDE, AXISX, AXISY, AXISZ)
+        VALUES
+          <foreach collection="list" item="element" index="index" open="(" separator="),(" close=")">
+            #{element.idUserActivityData}, #{element.idSensorType}, #{element.updateTime}, #{element.sequence}, #{element.latitude}, #{element.longitude}, #{element.axisx}, #{element.axisy}, #{element.axisz} 
+        </foreach>
+    </insert>
+    
+	
+    
+
+</mapper>

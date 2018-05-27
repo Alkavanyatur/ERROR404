@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.adidas.repository.mybatis.UserActivityDataMapper">
+
+    <resultMap id="userActivityData" type="UserActivityData">
+        <id property="idUserActivityData" column="ID_USER_ACTIVITY_DATA"/>
+        <result property="idActivity" column="ID_ACTIVITY"/>
+        <result property="idUser" column="ID_USER"/>
+        <result property="startTime" column="START_TIME"/>
+        <result property="endTime" column="END_TIME"/>
+        <result property="activity" column="ACTIVITY"/>
+        
+        
+    </resultMap>
+
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="idUserActivityData">
+        INSERT INTO
+          USER_ACTIVITY_DATA (ID_ACTIVITY, ID_USER, START_TIME, END_TIME)
+        VALUES
+          (#{idActivity}, #{idUser}, #{startTime}, #{endTime})
+    </insert>
+    
+	<select id="selectActivitiesByUserId" resultMap="userActivityData">
+        SELECT DISTINCT
+          UAD.ID_ACTIVITY, UAD.ID_USER, A.ACTIVITY
+        FROM
+          USER_ACTIVITY_DATA UAD
+          INNER JOIN ACTIVITY A ON A.ID_ACTIVITY = UAD.ID_ACTIVITY
+        WHERE
+          UAD.ID_USER = #{idUser}
+    </select>
+    
+	<select id="selectUserActivityDataByUserActivity" resultMap="userActivityData">
+        SELECT
+          UAD.ID_USER_ACTIVITY_DATA, UAD.ID_ACTIVITY, UAD.ID_USER, UAD.START_TIME, UAD.END_TIME, A.ACTIVITY
+        FROM
+          USER_ACTIVITY_DATA UAD
+          INNER JOIN ACTIVITY A ON A.ID_ACTIVITY = UAD.ID_ACTIVITY
+        WHERE
+          UAD.ID_USER = #{idUser}
+          AND UAD.ID_ACTIVITY = #{idActivity}
+    </select>
+    
+
+</mapper>
